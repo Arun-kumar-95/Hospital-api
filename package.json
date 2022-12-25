@@ -1,0 +1,22 @@
+{
+  "name": "hospital-api",
+  "version": "1.0.0",
+  "description": "Lets build an Hospital API",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/index.js"
+  },
+  "keywords": [],
+  "author": "Arun kumar",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.8.1",
+    "nodemon": "^2.0.20"
+  }
+}

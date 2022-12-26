@@ -41,6 +41,7 @@ module.exports.login = async (req, res) => {
   try {
     // find doctor by username
     let doctor = await doctorSchema.findOne({ username }).select("+password");
+
     if (!doctor) {
       return res.status(400).json({
         success: false,

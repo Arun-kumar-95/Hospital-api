@@ -18,6 +18,7 @@ const reportSchema = new mongoose.Schema({
       "Symptoms-Quarantine",
       "Positive-Admit",
     ],
+    required: true,
   },
 
   createdAt: {

@@ -6,7 +6,7 @@ const doctorSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: ["Please enter your full name", true],
-    match:[/^[a-zA-Z]+ [a-zA-Z]+$/, "Enter valid name"]
+    match: [/^[a-zA-Z]+ [a-zA-Z]+$/, "Enter valid name"],
   },
   username: {
     type: String,
@@ -52,8 +52,6 @@ doctorSchema.pre("save", async function (next) {
 
 // matchPassword
 doctorSchema.methods.matchPassword = async function (password) {
-  let salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(password, salt);
   return await bcrypt.compare(password, this.password);
 };
 

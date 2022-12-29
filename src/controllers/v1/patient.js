@@ -16,7 +16,6 @@ module.exports.register = async function (req, res, next) {
       return res.status(201).json({
         success: true,
         message: "Patient already exists",
-        data: [patient],
       });
     }
 

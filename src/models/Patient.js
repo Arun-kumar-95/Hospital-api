@@ -14,9 +14,9 @@ const patientSchema = new mongoose.Schema({
 
   phone: {
     type: Number,
-    min: [10, "Enter valid mobile number"],
-    required: ["Enter mobile number", true],
+    required: [true, "Enter mobile number"],
     trim: true,
+    match: [/^(0|91)?[6-9][0-9]{9}$/, "Enter valid mobile number"],
   },
 
   gender: {

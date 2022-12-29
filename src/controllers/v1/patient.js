@@ -8,11 +8,6 @@ module.exports.register = async function (req, res, next) {
   try {
     const { fullName, phone, gender, age } = req.body;
 
-    if (fullName == "" || phone == "" || gender == "" || age == "") {
-      return res
-        .status(500)
-        .json({ success: false, message: "Invalid fields" });
-    }
     // find patient using phone number
     let patient = await patientSchema.findOne({ phone });
 

@@ -13,8 +13,8 @@ const patientSchema = new mongoose.Schema({
   },
 
   phone: {
-    type: String,
-    minLength: [10, "Enter valid mobile number"],
+    type: Number,
+    min: [10, "Enter valid mobile number"],
     required: ["Enter mobile number", true],
     trim: true,
   },

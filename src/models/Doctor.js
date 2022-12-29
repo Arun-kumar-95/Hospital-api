@@ -30,6 +30,7 @@ const doctorSchema = new mongoose.Schema({
     required: ["Enter your password", true],
     select: false,
     minLength: [6, "Password must be of 6 character"],
+    trim: true,
   },
   createdAt: {
     type: Date,

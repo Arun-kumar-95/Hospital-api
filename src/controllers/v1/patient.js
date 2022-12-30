@@ -1,7 +1,7 @@
 const patientSchema = require("../../models/Patient.js");
 const reportSchema = require("../../models/Report.js");
 const { errorFormatter } = require("../../utils/errorFormatter.js");
-
+const { sendSms } = require("../../utils/SendSms.js");
 // ===========  register the patients
 
 module.exports.register = async function (req, res, next) {
@@ -16,6 +16,7 @@ module.exports.register = async function (req, res, next) {
       return res.status(201).json({
         success: true,
         message: "Patient already exists",
+        data: patient,
       });
     }
 
@@ -75,8 +76,19 @@ module.exports.createReport = async function (req, res) {
     await patient.save();
 
     // find the doctor field of newly created report
-    let foundReport = await reportSchema.findById(report._id.toString());
+    let foundReport = await reportSchema
+      .findById(report._id.toString())
+      .populate({
+        path: "doctor",
+      });
     await foundReport.save();
+
+    // send the sms to a patient phone number
+    let phone = patient.phone;
+    let doct_name = foundReport.doctor.fullName;
+
+    // CALLING THE SEND SMS HANDLER
+    sendSms(phone, doct_name, status);
 
     // return the response
     return res.status(200).json({
@@ -84,7 +96,7 @@ module.exports.createReport = async function (req, res) {
       message: "Report created",
       status: foundReport.status,
       data: {
-        createdBy: req.doctor.fullName,
+        createdBy: foundReport.doctor.fullName,
         createdDate: foundReport.createdAt.toDateString(),
         patientDetails: {
           name: patient.fullName,

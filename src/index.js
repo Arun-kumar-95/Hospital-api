@@ -1,6 +1,6 @@
 const express = require("express");
 const app = require("./server/main.js");
-
+const { notFound } = require("../src/utils/notFound.js");
 const cookieParser = require("cookie-parser");
 // require the routes
 const doctorRoutes = require("./routes/v1/doctor.js");
@@ -16,3 +16,7 @@ app.use(cookieParser());
 // using the routes
 app.use("/doctors", doctorRoutes);
 app.use("/patients", patientRoutes);
+
+
+// not found middleware
+app.use(notFound);

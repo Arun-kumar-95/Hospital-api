@@ -45,7 +45,16 @@ Note: don't try to change this url
 
 
 
+## Lets add sms features
 
+ For sending the sms to the patients i make use of twilio package 
+ 
+ Go to config.env file and add these varaiable
+
+- TWILIO_SID = 'you twilio sid'
+- TWILIO_AUTH_TOKEN = 'your twilio auth token'
+- TWILIO_PHONE = 'your twilio phone number'
+ 
 ## How to start server
 
 - Go to package.json file
@@ -53,6 +62,8 @@ Note: don't try to change this url
 "start": "nodemon ./src/index.js"
 
 - Finally go on the terminal to start the server use npm start
+
+
 ## Let's Talk About Routes
 Well the required routes are:
  
